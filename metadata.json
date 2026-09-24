@@ -1,0 +1,338 @@
+{
+  "name": "اتریش‌نشین | Otrish-Iran · پلتفرم جامع فارسی‌زبانان اتریش",
+  "shortName": "اتریش‌نشین",
+  "alternateName": ["Otrish Neshin", "Otrish-Iran", "کانون ایرانیان وین"],
+  "description": "بزرگ‌ترین کانون مستقل و رایگان فارسی‌زبانان مقیم اتریش. ۱۰۰+ ابزار هوشمند، دستیار حقوقی AI، محاسبه‌گر حقوق (Brutto-Netto)، ردیاب اقامت، نقشه خدمات فارسی، تالار گفتگو، راهنمای Pickerl، Steuernummer، Wohnbeihilfe، بیمه تکمیلی، دوره‌های WIFI/BFI با فاند WAFF و خدمات داوطلبانه در وین و سراسر اتریش.",
+  "hook": "زندگی در اتریش، بدون سردرگمی — هر ابزار و راهنمایی که لازم داری، در یک جا",
+  "slogan": "همراه فارسی‌زبانان اتریش از روز اول تا اقامت دائمی",
+
+  "requestFramePermissions": [
+    "geolocation",
+    "camera",
+    "microphone",
+    "notifications",
+    "clipboard-read",
+    "clipboard-write"
+  ],
+
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ],
+
+  "serverCapabilities": [
+    "ai-assistant",
+    "document-translation",
+    "legal-advice-ai",
+    "salary-calculator",
+    "residence-tracker",
+    "appointment-scheduler"
+  ],
+
+  "startUrl": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "dir": "rtl",
+  "lang": "fa-IR",
+
+  "theme": {
+    "primaryColor": "#c8102e",
+    "secondaryColor": "#1727b5",
+    "accentColor": "#059669",
+    "backgroundColor": "#ffffff",
+    "surfaceColor": "#fafaf9",
+    "textColor": "#1c1917",
+    "fontFamily": "Vazirmatn, system-ui, sans-serif"
+  },
+
+  "images": {
+    "hero": {
+      "url": "https://images.unsplash.com/photo-1516550893923-42d28e5677af?auto=format&fit=crop&w=1600&q=80",
+      "alt": "نمای شهری وین اتریش - پلتفرم اتریش‌نشین برای فارسی‌زبانان مقیم اتریش",
+      "width": 1600,
+      "height": 900
+    },
+    "ogImage": {
+      "url": "https://images.unsplash.com/photo-1519677100203-a0e668c92439?auto=format&fit=crop&w=1200&q=80",
+      "alt": "شهرداری وین - اتریش‌نشین، همراه فارسی‌زبانان اتریش",
+      "width": 1200,
+      "height": 630,
+      "type": "image/jpeg"
+    },
+    "twitterImage": {
+      "url": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80",
+      "alt": "آپارتمان مدرن در وین - خدمات مسکن و Wohnbeihilfe اتریش‌نشین",
+      "width": 1200,
+      "height": 630
+    },
+    "logo": {
+      "url": "/otrish_logo_1779961596526.png",
+      "alt": "لوگوی رسمی اتریش‌نشین",
+      "width": 512,
+      "height": 512
+    },
+    "favicon": "/favicon.ico",
+    "appleTouchIcon": "/apple-touch-icon.png"
+  },
+
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ],
+
+  "screenshots": [
+    {
+      "src": "https://images.unsplash.com/photo-1516550893923-42d28e5677af?auto=format&fit=crop&w=800&q=80",
+      "sizes": "800x600",
+      "type": "image/jpeg",
+      "label": "صفحه اصلی اتریش‌نشین - داشبورد ابزارها"
+    }
+  ],
+
+  "seo": {
+    "title": "اتریش‌نشین | راهنمای کامل زندگی و مهاجرت به اتریش برای فارسی‌زبانان",
+    "titleTemplate": "%s | اتریش‌نشین",
+    "description": "پلتفرم جامع فارسی‌زبانان مقیم اتریش: محاسبه‌گر حقوق، ردیاب اقامت، دستیار حقوقی AI، راهنمای Pickerl، Steuernummer، Wohnbeihilfe، بیمه تکمیلی، دوره‌های WIFI/BFI با فاند WAFF و ۱۰۰+ ابزار رایگان دیگر.",
+    "keywords": [
+      "اتریش نشین",
+      "Otrish Neshin",
+      "فارسی زبانان اتریش",
+      "مهاجرت به اتریش",
+      "زندگی در وین",
+      "محاسبه گر حقوق اتریش",
+      "Brutto Netto Rechner",
+      "ردیاب اقامت اتریش",
+      "دستیار حقوقی اتریش",
+      "Pickerl اتریش",
+      "Steuernummer اتریش",
+      "Wohnbeihilfe وین",
+      "بیمه تکمیلی اتریش",
+      "Zusatzversicherung",
+      "WIFI BFI WAFF",
+      "فاند آموزشی اتریش",
+      "داوطلبانه وین",
+      "خیریه فارسی زبانان",
+      "راهنمای ویزا اتریش",
+      "کار در اتریش",
+      "تحصیل در اتریش",
+      "خانه ایرانیان وین"
+    ],
+    "author": "اتریش‌نشین",
+    "publisher": "اتریش‌نشین",
+    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+    "canonicalUrl": "https://otrish-iran.ir",
+    "language": "fa-IR",
+    "hreflang": [
+      { "lang": "fa-IR", "url": "https://otrish-iran.ir" },
+      { "lang": "de-AT", "url": "https://otrish-iran.ir/de" },
+      { "lang": "en", "url": "https://otrish-iran.ir/en" },
+      { "lang": "x-default", "url": "https://otrish-iran.ir" }
+    ]
+  },
+
+  "openGraph": {
+    "type": "website",
+    "siteName": "اتریش‌نشین",
+    "title": "اتریش‌نشین | پلتفرم جامع فارسی‌زبانان مقیم اتریش",
+    "description": "همه ابزارهای موردنیاز برای زندگی در اتریش: محاسبه‌گر حقوق، ردیاب اقامت، دستیار حقوقی AI، راهنمای معاینه فنی، مالیات، بیمه و آموزش رایگان.",
+    "url": "https://otrish-iran.ir",
+    "locale": "fa_IR",
+    "image": "https://images.unsplash.com/photo-1519677100203-a0e668c92439?auto=format&fit=crop&w=1200&q=80",
+    "imageAlt": "شهرداری وین - اتریش‌نشین",
+    "imageWidth": 1200,
+    "imageHeight": 630
+  },
+
+  "twitter": {
+    "card": "summary_large_image",
+    "site": "@otrish__iran",
+    "creator": "@otrish__iran",
+    "title": "اتریش‌نشین | همراه فارسی‌زبانان اتریش",
+    "description": "۱۰۰+ ابزار رایگان برای زندگی، کار و اقامت در اتریش",
+    "image": "https://images.unsplash.com/photo-1519677100203-a0e668c92439?auto=format&fit=crop&w=1200&q=80"
+  },
+
+  "social": {
+    "telegram": "https://t.me/OTRISH_IRAN",
+    "instagram": "https://instagram.com/otrish__iran",
+    "facebook": "https://www.facebook.com/otrish.neshin",
+    "youtube": "https://youtube.com/@otrishneshin",
+    "whatsappIran": "https://wa.me/989306229790",
+    "whatsappAustria": "https://wa.me/436889763256",
+    "email": "otrish.neshin@gmail.com"
+  },
+
+  "contact": {
+    "phone": "+43 688 9763256",
+    "email": "otrish.neshin@gmail.com",
+    "address": {
+      "city": "Wien",
+      "country": "Austria",
+      "countryCode": "AT"
+    }
+  },
+
+  "categories": [
+    "مهاجرت و اقامت",
+    "کار و اشتغال",
+    "مالیات و امور مالی",
+    "مسکن و اجاره",
+    "خودرو و حمل‌ونقل",
+    "بیمه و سلامت",
+    "آموزش و مهارت‌آموزی",
+    "داوطلبی و خیریه",
+    "خدمات اجتماعی",
+    "زندگی روزمره"
+  ],
+
+  "tags": [
+    "#اتریش_نشین",
+    "#فارسی_زبانان_اتریش",
+    "#زندگی_در_وین",
+    "#مهاجرت_اتریش",
+    "#اقامت_اتریش",
+    "#کار_در_اتریش",
+    "#تحصیل_اتریش",
+    "#Pickerl",
+    "#Steuernummer",
+    "#Wohnbeihilfe",
+    "#Zusatzversicherung",
+    "#WIFI_BFI_WAFF",
+    "#Brutto_Netto_Rechner",
+    "#دستیار_حقوقی_AI",
+    "#ردیاب_اقامت",
+    "#نقشه_خدمات_فارسی"
+  ],
+
+  "ai": {
+    "primaryIntent": "assist-persian-speakers-in-austria",
+    "targetAudience": "Persian-speaking residents and immigrants in Austria",
+    "contentLanguage": ["fa", "de", "en"],
+    "knowledgeDomain": [
+      "Austrian immigration law",
+      "Austrian tax regulations",
+      "Austrian social welfare",
+      "Austrian housing policies",
+      "Austrian healthcare system",
+      "Austrian education system"
+    ],
+    "capabilities": [
+      "salary-calculation",
+      "tax-estimation",
+      "residence-permit-tracking",
+      "legal-document-translation",
+      "appointment-scheduling",
+      "insurance-comparison",
+      "housing-subsidy-calculation",
+      "vehicle-inspection-guidance"
+    ],
+    "structuredData": {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "name": "اتریش‌نشین",
+          "alternateName": "Otrish Neshin",
+          "url": "https://otrish-iran.ir",
+          "logo": "https://otrish-iran.ir/otrish_logo_1779961596526.png",
+          "description": "پلتفرم جامع فارسی‌زبانان مقیم اتریش با ۱۰۰+ ابزار کاربردی و خدمات مشاوره‌ای",
+          "sameAs": [
+            "https://t.me/OTRISH_IRAN",
+            "https://instagram.com/otrish__iran",
+            "https://www.facebook.com/otrish.neshin"
+          ],
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+436889763256",
+            "contactType": "customer service",
+            "availableLanguage": ["Persian", "German", "English"]
+          }
+        },
+        {
+          "@type": "WebSite",
+          "name": "اتریش‌نشین",
+          "url": "https://otrish-iran.ir",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://otrish-iran.ir/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "اتریش‌نشین",
+          "applicationCategory": "UtilitiesApplication",
+          "operatingSystem": "Web, iOS, Android",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "ratingCount": "1250",
+            "bestRating": "5"
+          }
+        }
+      ]
+    }
+  },
+
+  "pwa": {
+    "shortcuts": [
+      {
+        "name": "محاسبه‌گر حقوق",
+        "short_name": "حقوق",
+        "description": "محاسبه حقوق نتو از بروتو",
+        "url": "/tools/salary-calculator",
+        "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+      },
+      {
+        "name": "ردیاب اقامت",
+        "short_name": "اقامت",
+        "description": "پیگیری تاریخ‌های اقامت",
+        "url": "/tools/residence-tracker",
+        "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+      },
+      {
+        "name": "دستیار حقوقی AI",
+        "short_name": "AI حقوقی",
+        "description": "مشاوره هوشمند حقوقی",
+        "url": "/tools/legal-ai",
+        "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+      }
+    ],
+    "relatedApplications": [],
+    "preferRelatedApplications": false
+  },
+
+  "analytics": {
+    "googleAnalyticsId": "G-XXXXXXXXXX",
+    "enableCookiesConsent": true
+  },
+
+  "legal": {
+    "privacyPolicyUrl": "/privacy",
+    "termsOfServiceUrl": "/terms",
+    "cookiePolicyUrl": "/cookies",
+    "disclaimer": "اتریش‌نشین یک پلتفرم مستقل و غیرانتفاعی است و هیچ وابستگی به سازمان یا حزب سیاسی ندارد. تمام اطلاعات جنبه راهنمایی دارند و جایگزین مشاوره رسمی نیستند."
+  },
+
+  "features": {
+    "darkMode": true,
+    "rtlSupport": true,
+    "offlineSupport": false,
+    "pushNotifications": true,
+    "analytics": true,
+    "multiLanguage": ["fa", "de", "en"]
+  },
+
+  "stats": {
+    "activeUsers": "50K+",
+    "toolsCount": "100+",
+    "articlesCount": "500+",
+    "supportCoverage": "24/7",
+    "userSatisfaction": "98%"
+  }
+}

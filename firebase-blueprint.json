@@ -1,0 +1,384 @@
+{
+  "entities": {
+    "CaseStudy": {
+      "title": "Case Study",
+      "description": "User-generated migration experience.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "title", "content", "createdAt"]
+    },
+    "GlossaryTerm": {
+      "title": "Glossary Term",
+      "description": "Administrative terms relating to Austria.",
+      "type": "object",
+      "properties": {
+        "term": { "type": "string" },
+        "definition": { "type": "string" },
+        "category": { "type": "string" }
+      },
+      "required": ["term", "definition"]
+    },
+    "SuitabilityLead": {
+      "title": "Suitability Lead",
+      "description": "Lead generated from the visa wizard.",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "format": "email" },
+        "phone": { "type": "string" },
+        "score": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["email", "score", "createdAt"]
+    },
+    "JobPosting": {
+      "title": "Job Posting",
+      "description": "Job opportunities requiring bilingual skills.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "company": { "type": "string" },
+        "description": { "type": "string" }
+      },
+      "required": ["title", "company", "description"]
+    },
+    "NewsArticle": {
+      "title": "News Article",
+      "description": "Legal or administrative news updates.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "category": { "type": "string" }
+      },
+      "required": ["title", "content", "category"]
+    },
+    "School": {
+      "title": "School",
+      "description": "Schools and educational centers in Austria.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "city": { "type": "string" },
+        "district": { "type": "number" },
+        "type": { "type": "string" }
+      },
+      "required": ["name", "city", "type"]
+    },
+    "DownloadableForm": {
+      "title": "Downloadable Form",
+      "description": "Official documents and guides.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "filename": { "type": "string" },
+        "description": { "type": "string" }
+      },
+      "required": ["title", "filename"]
+    },
+    "ComparisonData": {
+      "title": "Comparison Data",
+      "description": "Cost of living comparison data.",
+      "type": "object",
+      "properties": {
+        "category": { "type": "string" },
+        "vienna": { "type": "number" },
+        "linz": { "type": "number" }
+      },
+      "required": ["category", "vienna", "linz"]
+    },
+    "VisaLead": {
+      "title": "Visa Lead",
+      "description": "Score and lead data from RWR calculator.",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string" },
+        "totalScore": { "type": "number" },
+        "eligible": { "type": "boolean" }
+      },
+      "required": ["email", "totalScore"]
+    },
+    "DistrictGuide": {
+      "title": "District Guide",
+      "description": "SEO content for Austrian districts.",
+      "type": "object",
+      "properties": {
+        "city": { "type": "string" },
+        "district": { "type": "number" },
+        "title": { "type": "string" },
+        "content": { "type": "string" }
+      },
+      "required": ["city", "district", "title", "content"]
+    },
+    "ExpertProfile": {
+      "title": "Expert Profile",
+      "description": "Profile for content authors/reviewers.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "bio": { "type": "string" },
+        "credentials": { "type": "string" }
+      },
+      "required": ["name", "bio"]
+    },
+    "ClaimReview": {
+      "title": "Claim Review",
+      "description": "Fact-checking schema.",
+      "type": "object",
+      "properties": {
+        "claim": { "type": "string" },
+        "verdict": { "type": "boolean" },
+        "source": { "type": "string" }
+      },
+      "required": ["claim", "verdict"]
+    },
+    "StudentFinance": {
+      "title": "Student Finance",
+      "description": "Information and calculator for student financial support.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "maxAmount": { "type": "number" }
+      },
+      "required": ["title", "description"]
+    },
+    "WillhabenGuide": {
+      "title": "Willhaben Guide",
+      "description": "Guide for using Willhaben platform.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "content": { "type": "string" }
+      },
+      "required": ["title", "content"]
+    },
+    "NeighborhoodMatrix": {
+      "title": "Neighborhood Matrix",
+      "description": "Comparison data for Austrian neighborhoods.",
+      "type": "object",
+      "properties": {
+        "neighborhoodA": { "type": "string" },
+        "neighborhoodB": { "type": "string" },
+        "comparison": { "type": "string" }
+      },
+      "required": ["neighborhoodA", "neighborhoodB", "comparison"]
+    },
+    "ContactMessage": {
+      "title": "Contact Message",
+      "description": "User message from contact form.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "subject": { "type": "string" },
+        "message": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "email", "subject", "message", "createdAt"]
+    },
+    "VolunteerOpportunity": {
+      "title": "Volunteer Opportunity",
+      "description": "Opportunities for volunteering.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "organization": { "type": "string" },
+        "description": { "type": "string" }
+      },
+      "required": ["title", "description"]
+    },
+    "UserProfile": {
+      "title": "User Profile",
+      "description": "User profile document",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "maxLength": 128 },
+        "email": { "type": "string", "format": "email", "maxLength": 200 },
+        "displayName": { "type": "string", "maxLength": 100 },
+        "photoURL": { "type": "string", "maxLength": 1000 }
+      },
+      "required": ["uid", "email"]
+    },
+    "ForumPost": {
+      "title": "Forum Post",
+      "description": "Community discussion post",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "minLength": 2, "maxLength": 300 },
+        "content": { "type": "string", "minLength": 2, "maxLength": 10000 },
+        "author": { "type": "string", "maxLength": 100 },
+        "authorId": { "type": "string", "maxLength": 128 },
+        "category": { "type": "string", "enum": ["students", "housing", "jobs", "general"] },
+        "date": { "type": "string", "maxLength": 50 },
+        "upvotes": { "type": "number" },
+        "repliesCount": { "type": "number" }
+      },
+      "required": ["title", "content", "author", "authorId", "category", "date"]
+    },
+    "ForumReply": {
+      "title": "Forum Reply",
+      "description": "Reply to a forum discussion post",
+      "type": "object",
+      "properties": {
+        "author": { "type": "string", "maxLength": 100 },
+        "authorId": { "type": "string", "maxLength": 128 },
+        "content": { "type": "string", "minLength": 2, "maxLength": 5000 },
+        "date": { "type": "string", "maxLength": 50 },
+        "upvotes": { "type": "number" }
+      },
+      "required": ["author", "authorId", "content", "date"]
+    },
+    "CarpoolTrip": {
+      "title": "Carpool Trip",
+      "description": "Community carpool and flight travel sharing listing",
+      "type": "object",
+      "properties": {
+        "traveler": { "type": "string", "maxLength": 100 },
+        "travelerId": { "type": "string", "maxLength": 128 },
+        "origin": { "type": "string", "maxLength": 150 },
+        "destination": { "type": "string", "maxLength": 150 },
+        "date": { "type": "string", "maxLength": 50 },
+        "spaceAvailable": { "type": "string", "maxLength": 200 },
+        "notes": { "type": "string", "maxLength": 1000 },
+        "contact": { "type": "string", "maxLength": 100 },
+        "likes": { "type": "number" }
+      },
+      "required": ["traveler", "travelerId", "origin", "destination", "date"]
+    },
+    "HonoraryHost": {
+      "title": "Honorary Host",
+      "description": "Volunteer diaspora host and mentor",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "maxLength": 100 },
+        "hostId": { "type": "string", "maxLength": 128 },
+        "city": { "type": "string", "maxLength": 150 },
+        "periodInSpain": { "type": "string", "maxLength": 150 },
+        "expertise": { "type": "string", "maxLength": 300 },
+        "notes": { "type": "string", "maxLength": 1000 },
+        "contactMethod": { "type": "string", "maxLength": 200 },
+        "rating": { "type": "number" }
+      },
+      "required": ["name", "hostId", "city"]
+    },
+    "DivarItem": {
+      "title": "Divar Item",
+      "description": "Community classified ad / second-hand marketplace listing",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "minLength": 2, "maxLength": 200 },
+        "price": { "type": "string", "maxLength": 100 },
+        "priceNum": { "type": "number" },
+        "location": { "type": "string", "maxLength": 200 },
+        "contact": { "type": "string", "maxLength": 150 },
+        "date": { "type": "string", "maxLength": 50 },
+        "category": { "type": "string", "maxLength": 100 },
+        "authorId": { "type": "string", "maxLength": 128 },
+        "author": { "type": "string", "maxLength": 100 },
+        "likes": { "type": "number" },
+        "desc": { "type": "string", "maxLength": 2000 }
+      },
+      "required": ["title", "location", "contact", "category", "authorId", "author"]
+    }
+  },
+  "firestore": {
+    "/user_profiles/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profile data"
+    },
+    "/forum_posts/{postId}": {
+      "schema": "ForumPost",
+      "description": "Community forum posts"
+    },
+    "/forum_posts/{postId}/replies/{replyId}": {
+      "schema": "ForumReply",
+      "description": "Replies to forum posts"
+    },
+    "/carpools/{carpoolId}": {
+      "schema": "CarpoolTrip",
+      "description": "Carpool and flight sharing trips"
+    },
+    "/honorary_hosts/{hostId}": {
+      "schema": "HonoraryHost",
+      "description": "Honorary host mentors"
+    },
+    "/divar_items/{itemId}": {
+      "schema": "DivarItem",
+      "description": "Classified advertisements"
+    },
+    "/caseStudies/{caseStudyId}": {
+      "schema": "CaseStudy",
+      "description": "User migration experiences"
+    },
+    "/glossary/{termId}": {
+      "schema": "GlossaryTerm",
+      "description": "Definitions for Austrian administrative terms"
+    },
+    "/leads/{leadId}": {
+      "schema": "SuitabilityLead",
+      "description": "Leads from suitability wizard"
+    },
+    "/jobs/{jobId}": {
+      "schema": "JobPosting",
+      "description": "Job opportunities"
+    },
+    "/news/{newsId}": {
+      "schema": "NewsArticle",
+      "description": "Legal and administrative news"
+    },
+    "/schools/{schoolId}": {
+      "schema": "School",
+      "description": "Austrian schools and educational centers"
+    },
+    "/forms/{formId}": {
+      "schema": "DownloadableForm",
+      "description": "Official forms and guides"
+    },
+    "/comparison/{comparisonId}": {
+      "schema": "ComparisonData",
+      "description": "Cost of living comparison statistics"
+    },
+    "/visaLeads/{leadId}": {
+      "schema": "VisaLead",
+      "description": "Leads from visa RWR calculator"
+    },
+    "/districtGuides/{guideId}": {
+      "schema": "DistrictGuide",
+      "description": "SEO guides for Austrian districts"
+    },
+    "/experts/{expertId}": {
+      "schema": "ExpertProfile",
+      "description": "Profiles of site experts"
+    },
+    "/factChecks/{factCheckId}": {
+      "schema": "ClaimReview",
+      "description": "Fact-checked claims"
+    },
+    "/studentFinance/{financeId}": {
+      "schema": "StudentFinance",
+      "description": "Student financial support info"
+    },
+    "/willhabenGuides/{guideId}": {
+      "schema": "WillhabenGuide",
+      "description": "Willhaben platform guides"
+    },
+    "/neighborhoodComparison/{comparisonId}": {
+      "schema": "NeighborhoodMatrix",
+      "description": "Neighborhood comparison data"
+    },
+    "/contactMessages/{messageId}": {
+      "schema": "ContactMessage",
+      "description": "User contact messages"
+    },
+    "/volunteerOpportunities/{opportunityId}": {
+      "schema": "VolunteerOpportunity",
+      "description": "Volunteer opportunities"
+    }
+  }
+}
+

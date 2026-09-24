@@ -1,0 +1,195 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Global Safety Net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helper Primitives
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    
+    function isSeeding(collection, id) {
+      return (collection == 'carpools' && (id == 'cp1' || id == 'cp2')) ||
+             (collection == 'honorary_hosts' && (id == 'host1' || id == 'host2')) ||
+             (collection == 'divar_items' && (id == 'a1' || id == 'a2' || id == 'a3' || id == 'a4')) ||
+             (collection == 'forum_posts' && (id == 'p_student_intern_1' || id == 'p_family_reunion_1' || id == 'p_online_tax_1' || id == 'p_living_cost_graz_1')) ||
+             (collection == 'replies' && (id == 'rp-intern-1' || id == 'rp-intern-2' || id == 'rp-fam-1' || id == 'rp-tax-1' || id == 'rp-graz-1'));
+    }
+
+    function isVerifiedUser() {
+      return isSignedIn() && (request.auth.token.email_verified == true || request.auth.token.firebase.sign_in_provider == 'google.com'); 
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    // --- USER PROFILE RULES ---
+    function isValidUserProfile(data) {
+      return data.uid is string && data.uid.size() <= 128
+        && data.email is string && data.email.size() <= 200
+        && (!('displayName' in data) || (data.displayName is string && data.displayName.size() <= 100))
+        && (!('photoURL' in data) || (data.photoURL is string && data.photoURL.size() <= 1000));
+    }
+
+    match /user_profiles/{userId} {
+      allow get: if isSignedIn();
+      allow list: if isSignedIn();
+      allow create: if isOwner(userId) && isValidUserProfile(request.resource.data) 
+        && request.resource.data.uid == request.auth.uid;
+      allow update: if isOwner(userId) && isValidUserProfile(request.resource.data)
+        && request.resource.data.uid == resource.data.uid
+        && request.resource.data.email == resource.data.email; 
+      allow delete: if false; // no deletions
+    }
+
+    // --- FORUM POSTS ---
+    function isValidForumPost(data) {
+      return data.title is string && data.title.size() >= 2 && data.title.size() <= 300
+        && data.content is string && data.content.size() >= 2 && data.content.size() <= 10000
+        && data.author is string && data.author.size() <= 100
+        && data.authorId is string && data.authorId.size() <= 128
+        && data.category is string && (data.category == 'students' || data.category == 'housing' || data.category == 'jobs' || data.category == 'general')
+        && data.date is string && data.date.size() <= 50;
+    }
+
+    match /forum_posts/{postId} {
+      allow get: if true; // Public listings
+      allow list: if true; // Public listings
+
+      allow create: if ((isVerifiedUser() && request.resource.data.authorId == request.auth.uid && request.resource.data.upvotes == 1 && request.resource.data.repliesCount == 0) || (request.auth == null && isSeeding('forum_posts', postId)))
+        && isValidId(postId) && isValidForumPost(request.resource.data);
+
+      allow update: if isVerifiedUser() && isValidId(postId) && isValidForumPost(request.resource.data)
+        && (
+          // Action 1: Owner editing post content/title
+          (isOwner(resource.data.authorId) && request.resource.data.authorId == resource.data.authorId && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['title', 'content', 'category']))
+          ||
+          // Action 2: Upvote/Replies increment (can be performed by signed in users)
+          (request.resource.data.authorId == resource.data.authorId && request.resource.data.title == resource.data.title && request.resource.data.content == resource.data.content && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['upvotes', 'repliesCount']))
+        );
+
+      allow delete: if isVerifiedUser() && isOwner(resource.data.authorId);
+    }
+
+    // --- FORUM REPLIES ---
+    function isValidForumReply(data) {
+      return data.author is string && data.author.size() <= 100
+        && data.authorId is string && data.authorId.size() <= 128
+        && data.content is string && data.content.size() >= 2 && data.content.size() <= 5000
+        && data.date is string && data.date.size() <= 50;
+    }
+
+    match /forum_posts/{postId}/replies/{replyId} {
+      allow get, list: if true; // public replies
+
+      allow create: if ((isVerifiedUser() && request.resource.data.authorId == request.auth.uid && request.resource.data.upvotes == 1) || (request.auth == null && isSeeding('replies', replyId)))
+        && isValidId(postId) && isValidId(replyId) && isValidForumReply(request.resource.data)
+        // Master Gate relational lock: parent must exist
+        && exists(/databases/$(database)/documents/forum_posts/$(postId));
+
+      allow update: if isVerifiedUser() && isValidId(postId) && isValidId(replyId) && isValidForumReply(request.resource.data)
+        && (
+          // Action 1: upvote reply
+          (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['upvotes']))
+          ||
+          // Action 2: edit reply content by owner
+          (isOwner(resource.data.authorId) && request.resource.data.authorId == resource.data.authorId && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['content']))
+        );
+
+      allow delete: if isVerifiedUser() && isOwner(resource.data.authorId);
+    }
+
+    // --- CARPOOLS ---
+    function isValidCarpool(data) {
+      return data.traveler is string && data.traveler.size() <= 100
+        && data.travelerId is string && data.travelerId.size() <= 128
+        && data.origin is string && data.origin.size() <= 150
+        && data.destination is string && data.destination.size() <= 150
+        && data.date is string && data.date.size() <= 50
+        && data.spaceAvailable is string && data.spaceAvailable.size() <= 200
+        && data.notes is string && data.notes.size() <= 1000
+        && data.contact is string && data.contact.size() <= 100
+        && data.likes is int;
+    }
+
+    match /carpools/{carpoolId} {
+      allow get, list: if true;
+
+      allow create: if ((isVerifiedUser() && request.resource.data.travelerId == request.auth.uid) || (request.auth == null && isSeeding('carpools', carpoolId)))
+        && isValidId(carpoolId) && isValidCarpool(request.resource.data);                
+
+      allow update: if isVerifiedUser() && isValidId(carpoolId) && isValidCarpool(request.resource.data)
+        && (
+          (isOwner(resource.data.travelerId) && request.resource.data.travelerId == resource.data.travelerId && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['origin', 'destination', 'date', 'spaceAvailable', 'notes', 'contact']))
+          ||
+          (request.resource.data.travelerId == resource.data.travelerId && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['likes']))
+        );
+
+      allow delete: if isVerifiedUser() && (isOwner(resource.data.travelerId) || resource.data.travelerId == 'seeded_author');
+    }
+
+    // --- HONORARY HOSTS ---
+    function isValidHonoraryHost(data) {
+      return data.name is string && data.name.size() <= 100
+        && data.hostId is string && data.hostId.size() <= 128
+        && data.city is string && data.city.size() <= 150
+        && data.periodInSpain is string && data.periodInSpain.size() <= 150
+        && data.expertise is string && data.expertise.size() <= 300
+        && data.notes is string && data.notes.size() <= 1000
+        && data.contactMethod is string && data.contactMethod.size() <= 200;
+    }
+
+    match /honorary_hosts/{hostId} {
+      allow get, list: if true;
+      allow create: if ((isVerifiedUser() && request.resource.data.hostId == request.auth.uid) || (request.auth == null && isSeeding('honorary_hosts', hostId)))
+        && isValidId(hostId) && isValidHonoraryHost(request.resource.data);
+      allow update: if isVerifiedUser() && isValidId(hostId) && isValidHonoraryHost(request.resource.data)
+        && isOwner(resource.data.hostId);
+      allow delete: if false;
+    }
+
+    // --- DIVAR ITEMS ---
+    function isValidDivarItem(data) {
+      return data.title is string && data.title.size() >= 2 && data.title.size() <= 200
+        && data.priceNum is int && data.priceNum >= 0
+        && data.location is string && data.location.size() <= 200
+        && data.contact is string && data.contact.size() <= 150
+        && data.date is string && data.date.size() <= 50
+        && data.category is string && data.category.size() <= 100
+        && data.authorId is string && data.authorId.size() <= 128
+        && data.author is string && data.author.size() <= 100
+        && data.likes is int;
+    }
+
+    match /divar_items/{itemId} {
+      allow get, list: if true;
+
+      allow create: if (isVerifiedUser() && isValidId(itemId) && isValidDivarItem(request.resource.data) && request.resource.data.authorId == request.auth.uid) 
+        || (request.auth == null && isSeeding('divar_items', itemId) && isValidId(itemId) && isValidDivarItem(request.resource.data));
+
+      allow update: if isVerifiedUser() && isValidId(itemId) && isValidDivarItem(request.resource.data)
+        && (
+          (isOwner(resource.data.authorId) && request.resource.data.authorId == resource.data.authorId && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['title', 'price', 'priceNum', 'location', 'contact', 'category', 'desc']))
+          ||
+          (request.resource.data.authorId == resource.data.authorId && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['likes']))
+        );
+
+      allow delete: if isVerifiedUser() && isOwner(resource.data.authorId);
+    }
+
+    // --- CONTACT MESSAGES ---
+    match /contactMessages/{messageId} {
+      allow create: if isValidId(messageId);
+      allow read, update, delete: if false;
+    }
+  }
+}
